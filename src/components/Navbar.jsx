@@ -76,7 +76,7 @@ const Navbar = () => {
             </Left>
             <Center>
                 <Logo>
-                    <h1>NASUP.</h1>
+                    <h1>SUP.</h1>
                 </Logo>
             </Center>
             <Right>
