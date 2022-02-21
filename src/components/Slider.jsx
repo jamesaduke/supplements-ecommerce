@@ -1,6 +1,7 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons'
 import React from 'react'
 import styled from 'styled-components'
+import { sliderItems } from '../data';
 
 const Container = styled.div`
     width: 100%;
@@ -8,6 +9,7 @@ const Container = styled.div`
     display: flex;
     position: relative;
     margin-top: 0.5em;
+    overflow: hidden;
 `;
 
 const Arrow = styled.div`
@@ -26,19 +28,25 @@ const Arrow = styled.div`
     margin: auto;
     cursor: pointer;
     opacity: 0.5;
+    z-index: 2;
+
 `;
 
 const Wrapper = styled.div`
   height: 100%;
-  
+  display: flex;
+  transition: all 1.5s ease;
+  transform: translateX(${props => props.slideIndex * -99}vw);
+
 `;
 
 const Slide = styled.div`
-    width: 97vw;
+    width: 99vw;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #${props => props.bg};
 `;
 const ImageContainer = styled.div`
     flex: 1;
@@ -71,14 +79,37 @@ const Button = styled.button`
 
 
 const Slider = () => {
+
+    const [slideIndex, setSlideIndex] = React.useState(0);
+
+    const handleClick = (direction) => {
+        if (direction === "left") {
+            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
+        } else {
+            setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
+        }
+    }
   return (
     <div>
         <Container>
-            <Arrow direction="left">
+            <Arrow direction="left" onClick={() => handleClick("left")}>
                 <ArrowLeftOutlined />
             </Arrow>
-            <Wrapper>
-                <Slide>
+            <Wrapper slideIndex = {slideIndex}>
+                {sliderItems.map((item) => (
+                    <Slide bg={item.bg}>
+                        <ImageContainer>
+                            <Image src={item.img} />
+                        </ImageContainer>
+
+                        <InfoContainer>
+                            <Title>{item.title}</Title>
+                            <Description>{item.description}</Description>
+                            <Button>SHOP NOW</Button>
+                        </InfoContainer>
+                    </Slide>
+                ))}
+                {/* <Slide bg="f5fafd">
                     <ImageContainer>
                         <Image src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" />
                     </ImageContainer>
@@ -88,9 +119,9 @@ const Slider = () => {
                         <Description>DON'T COMPROMISE GET THE BEST</Description>
                         <Button>SHOP NOW</Button>
                     </InfoContainer>
-                </Slide>
+                </Slide> */}
             </Wrapper>
-            <Arrow direction="right">
+            <Arrow direction="right" onClick={() => handleClick("right")}>
                 <ArrowRightOutlined />
             </Arrow>
         </Container>
