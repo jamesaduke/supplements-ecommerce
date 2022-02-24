@@ -8,7 +8,7 @@ const Container = styled.div`
         rgba(255, 255, 255, 0.5)
     ), url("https:images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     // TODO: Add background-linear gradient
-
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
