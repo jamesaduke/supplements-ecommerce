@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mobile } from '../responsive';
 
 const Container = styled.div`
     width: 100vw;
@@ -6,7 +7,7 @@ const Container = styled.div`
     background: linear-gradient(
         rgba(255, 255, 255, 0.5),
         rgba(255, 255, 255, 0.5)
-    ), url("https:images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=940");
+    ), url("https:images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=940") center;
     // TODO: Add background-linear gradient
     background-size: cover;
     display: flex;
@@ -18,6 +19,13 @@ const Wrapper = styled.div`
     padding: 20px;
     width: 25%;
     background-color: white;
+    ${mobile
+        (
+          {
+            width: "75%",
+          }
+        )
+    }
 `;
 
 const Title = styled.h1`
